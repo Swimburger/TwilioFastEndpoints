@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>bc5402d8-93de-47a2-806e-25ed95c397bc</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastEndpoints" Version="5.6.0" />
+    <PackageReference Include="Twilio" Version="6.2.0" />
+    <PackageReference Include="Twilio.AspNet.Core" Version="7.0.0" />
+  </ItemGroup>
+
+</Project>
