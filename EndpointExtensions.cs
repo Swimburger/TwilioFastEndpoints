@@ -1,7 +1,7 @@
 using System.Xml.Linq;
 using Twilio.TwiML;
 
-namespace TwilioSmsFastEndpoints;
+namespace TwilioFastEndpoints;
 
 public static class EndpointExtensions
 {

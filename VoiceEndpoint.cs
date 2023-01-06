@@ -1,22 +1,22 @@
 using Twilio.AspNet.Common;
 using Twilio.TwiML;
 
-namespace TwilioSmsFastEndpoints;
+namespace TwilioFastEndpoints;
 
-public class VoiceEndpoint : Endpoint<SmsRequest>
+public class VoiceEndpoint : Endpoint<VoiceRequest>
 {
     public override void Configure()
     {
         Post("/voice");
-        Description(b => b.Accepts<SmsRequest>("application/x-www-form-urlencoded"));
-        PreProcessors(new ValidateTwilioRequestProcessor<SmsRequest>());
+        Description(b => b.Accepts<VoiceRequest>("application/x-www-form-urlencoded"));
+        PreProcessors(new ValidateTwilioRequestProcessor<VoiceRequest>());
     }
     
-    public override async Task HandleAsync(SmsRequest request, CancellationToken ct)
+    public override async Task HandleAsync(VoiceRequest request, CancellationToken ct)
     {
-        var messagingResponse = new VoiceResponse();
-        messagingResponse.Say($"Ahoy {AddSpacesBetweenCharacters(request.From)}!");
-        await this.SendTwiML(messagingResponse, ct);
+        var voiceResponse = new VoiceResponse();
+        voiceResponse.Say($"Ahoy {AddSpacesBetweenCharacters(request.From)}!");
+        await this.SendTwiML(voiceResponse, ct);
     }
 
     // to spell out individual numbers in <Say>, add space between each number

@@ -1,7 +1,7 @@
 using Twilio.AspNet.Common;
 using Twilio.TwiML;
 
-namespace TwilioSmsFastEndpoints;
+namespace TwilioFastEndpoints;
 
 public class MessageEndpoint : Endpoint<SmsRequest>
 {

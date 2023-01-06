@@ -2,7 +2,7 @@ using FluentValidation.Results;
 using Microsoft.Extensions.Options;
 using Twilio.AspNet.Core;
 
-namespace TwilioSmsFastEndpoints;
+namespace TwilioFastEndpoints;
 
 public class ValidateTwilioRequestProcessor<TRequest> : IPreProcessor<TRequest>
 {
@@ -14,7 +14,10 @@ public class ValidateTwilioRequestProcessor<TRequest> : IPreProcessor<TRequest>
     )
     {
         var httpRequest = httpContext.Request;
-        var options = httpContext.RequestServices.GetRequiredService<IOptions<TwilioRequestValidationOptions>>().Value;
+        var options = httpContext.Resolve<IOptions<TwilioRequestValidationOptions>>().Value;
+        if(string.IsNullOrEmpty(options.AuthToken)) 
+            throw new Exception("Twilio Auth Token not configured.");
+        
         var baseUrlOverride = options.BaseUrlOverride?.TrimEnd('/');
 
         string? urlOverride = null;
@@ -25,7 +28,7 @@ public class ValidateTwilioRequestProcessor<TRequest> : IPreProcessor<TRequest>
         
         if (!RequestValidationHelper.IsValidRequest(httpContext, options.AuthToken, urlOverride, options.AllowLocal ?? true))
         {
-            return httpContext.Response.SendForbiddenAsync();
+            return httpContext.Response.SendForbiddenAsync(ct);
         }
 
         return Task.CompletedTask;

@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>bc5402d8-93de-47a2-806e-25ed95c397bc</UserSecretsId>
+    <RootNamespace>TwilioSmsFastEndpoints</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
